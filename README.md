@@ -7,6 +7,7 @@
 - [Sobre](#sobre)
 - [Tecnologias](#tecnologias)
 - [Instalação](#instalação)
+- [Licença](#licença)
 
 ## Sobre
 
@@ -47,8 +48,8 @@ npm start
 ```
 
 Após seguir esses passos, o frontend do projeto AcademicShare estará rodando na porta 3000 do seu localhost. Para acessar o frontend, basta abrir o seu navegador e acessar o endereço `http://localhost:3000`.
-```
 
 
-# README.md
-# AcademicShare Frontend
+## Licença
+
+Este projeto está licenciado sob a licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
