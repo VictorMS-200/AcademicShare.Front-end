@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# AcademicShare Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Essa é a parte do frontend do projeto AcademicShare, um projeto de compartilhamento de materiais acadêmicos. O frontend foi desenvolvido utilizando ReactJS e JavaScript.
 
-## Available Scripts
+## Sumário
 
-In the project directory, you can run:
+- [Sobre](#sobre)
+- [Tecnologias](#tecnologias)
+- [Instalação](#instalação)
 
-### `npm start`
+## Sobre
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O frontend do projeto AcademicShare foi desenvolvido utilizando ReactJS e JavaScript. O frontend é responsável por toda a interface gráfica do projeto, permitindo que os usuários possam interagir com o sistema de forma mais amigável.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para utilizar o frontend, é necessário que o backend do projeto esteja rodando. O backend do projeto pode ser encontrado no seguinte repositório: [AcademicShare Backend](https://github.com/VictorMS-200/academicShare.Back-end).
 
-### `npm test`
+## Tecnologias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As seguintes tecnologias foram utilizadas no desenvolvimento do frontend do projeto AcademicShare:
 
-### `npm run build`
+- ReactJS
+- JavaScript
+- Axios
+- React Router Dom
+- Material UI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para instalar o frontend do projeto AcademicShare, siga os passos abaixo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone o repositório do frontend do projeto AcademicShare:
 
-### `npm run eject`
+```bash
+git clone
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Instale as dependências do projeto:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Inicie o frontend do projeto:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+Após seguir esses passos, o frontend do projeto AcademicShare estará rodando na porta 3000 do seu localhost. Para acessar o frontend, basta abrir o seu navegador e acessar o endereço `http://localhost:3000`.
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# README.md
+# AcademicShare Frontend
