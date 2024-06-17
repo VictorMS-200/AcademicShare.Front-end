@@ -11,7 +11,7 @@ import AvatarBarComponent from '../Components/AvatarBarComponent';
 
 const pages = ['Publicacao'];
 const pagesRoutes = ['publicacao'];
-const settings = ['Perfil', 'Dashboard', 'Sair'];
+const settings = ['Perfil', 'Sair'];
 
 const darkTheme = createTheme({
     palette: {

@@ -1,114 +1,78 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import { Button, Grid } from '@mui/material';
-import { Stack } from '@mui/material';
+import { Grid, Container, Typography } from '@mui/material';
 
-import FormularioComponent from '../../Components/FormularioComponent';
-import TextFildComponent from '../../Components/TextFildComponent';
 
 const useStyles = makeStyles(() => ({
     button: {
         marginTop: '50vh'
-    }
+    },
+    texto: {
+        textAlign: 'center',
+        marginTop: '20px'
+    },
+    box: {
+        marginTop: '20px',
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#e3f2fd',
+        borderRadius: '10px',
+        padding: '20px',
+        cursor: 'pointer'
+    },
 }));
 
-const RegisterPage = () => {
-    const navigate = useNavigate();
-
-    const initialFormState = { nome: '', email: '', senha: '', curso: { nome: '', faculdade: { nome: '' } }, numeroDeMatricula: '', avatar: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' }
-    const [usuario, setUsuario] = useState(initialFormState)
+export default function RegistarUsuarioPage() {
     const classes = useStyles();
-
-    function handleInputChange(event) {
-        const { name, value } = event.target
-        setUsuario({ ...usuario, [name]: value })
-    }
-
-    const baseUrl = "http://localhost:8080/auth/register";
-
-    async function handleRegister(usuario) {
-        if (!usuario.nome || !usuario.email || !usuario.senha || !usuario.curso.nome || !usuario.curso.faculdade.nome || !usuario.numeroDeMatricula) {
-            alert('Preencha todos os campos!')
-            return
-        }
-        try {
-            const response = await fetch(baseUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(usuario)
-            })
-            console.log(usuario)
-            if (response.ok) {
-                const data = await response.json()
-                localStorage.setItem('token', data.token)
-                localStorage.setItem('user', JSON.stringify(data.usuario))
-                navigate('/')
-            } else {
-                const error = await response.json()
-                throw new Error(error.message)
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
     return (
-        <>
-            <FormularioComponent title='Crie agora uma conta de estudante ou Professor!' size='xs'>
-                <Grid container spacing={2}>
-                    <TextFildComponent 
-                        label='nome'
-                        name='nome'
-                        value={usuario.nome} 
-                        onChange={handleInputChange}/>
-                    <TextFildComponent 
-                        label='email'
-                        name='email'
-                        value={usuario.email} 
-                        onChange={handleInputChange}/>
-                    <TextFildComponent 
-                        label='faculdade'
-                        name='faculdade'
-                        value={usuario.curso.faculdade.nome} 
-                        onChange={e => {
-                            setUsuario({ ...usuario, curso: { ...usuario.curso, faculdade: { nome: e.target.value } } })}}/>
-                    <TextFildComponent 
-                        label='curso'
-                        name='curso'
-                        value={usuario.curso.nome} 
-                        onChange={e => {
-                            setUsuario({ ...usuario, curso: { ...usuario.curso, nome: e.target.value } })}}/>
-                    <TextFildComponent 
-                        label='numero de matricula' 
-                        name='numeroDeMatricula' 
-                        type="number" 
-                        value={usuario.numeroDeMatricula} 
-                        onChange={handleInputChange} />
-                    <TextFildComponent 
-                        label='senha' 
-                        name='senha' 
-                        type="password"
-                        value={usuario.senha} 
-                        onChange={handleInputChange}/>
+        <Container component="main" maxWidth="sm">
+            <h1 className={classes.texto}>Quem é você?</h1>
+            <p>Antes de começar, precisamos saber quem você é. Por favor, selecione uma das opções abaixo.</p>
+            <Grid className={classes.box} onClick={event => {
+                    event.preventDefault()
+                    window.location.href = '/registar-universitario'}}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item>
+                            <img src="https://img.icons8.com/ios/452/student-center.png" alt="Estudante" style={{ width: 96, height: 96 }} />
+                    </Grid>
+                    <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2} >
+                            <Grid item xs>
+                                <Typography gutterBottom variant="h5">
+                                    Universitario
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    Estudante de uma universidade publica ou privada
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Stack spacing={2} direction="row" marginTop={2}>
-                    <Button variant="contained" color="primary" fullWidth className={classes.button} onClick={event => {
-                        event.preventDefault()
-                        handleRegister(usuario)
-                    }}>
-                        Criar conta
-                    </Button>
-                    <Button variant="contained" color="success" fullWidth onClick={event => {
-                        event.preventDefault()
-                        navigate('/login')
-                    }}>
-                        Login
-                    </Button>
-                </Stack>
-            </FormularioComponent>
-        </>
+            </Grid>
+            
+            <Grid className={classes.box} onClick={event => {
+                    event.preventDefault()
+                    window.location.href = '/registar-usuario'}}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item>
+                        <img src="https://img.icons8.com/ios/452/teacher.png" alt="Professor" style={{ width: 96, height: 96 }} />
+                    </Grid>
+                    <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2} >
+                            <Grid item xs>
+                                <Typography gutterBottom variant="h5">
+                                    Usuário
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    Apenas alguém interessado em artigos cientificos e pesquisas
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Container>
     );
-};
-
-export default RegisterPage;
+}

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import { Stack } from '@mui/material';
+import { Alert } from '@mui/material';
+import { AlertTitle } from '@mui/material';
 
 import FormularioComponent from '../../Components/FormularioComponent';
 import TextFildComponent from '../../Components/TextFildComponent';
@@ -12,12 +14,33 @@ import TextFildComponent from '../../Components/TextFildComponent';
 const baseUrl = "http://localhost:8080/api/v1/publicacao";
 
 export default function PublicarPage() {
+    const [image, setImage] = useState(null);
+    const [hasError, setHasError] = useState(false);
+
+    const onImageChange = event => {
+        if (event.target.files && event.target.files[0]) {
+            let img = event.target.files[0];
+            setImage(URL.createObjectURL(img));
+        }
+    };
+
     const navigate = useNavigate();
     const editorRef = useRef(null);
 
     const user = JSON.parse(localStorage.getItem('user'));
 
-    const initialFormState = { resumo: '', assunto: { nome: '' }, usuario: { idUsuario: user.idUsuario }, conteudo: '' }
+    useEffect(() => {
+        if (user === null) {
+            console.log('Usuário não autenticado')
+            navigate('/login')
+        }
+        if (user.role !== 'USER') {
+            setHasError(true)
+        }
+    }, [user, navigate])
+
+
+    const initialFormState = { resumo: '', assunto: { nome: '' }, conteudo: '', professor: '', usuario: {}, imagem: '' }
     const [publicacao, setPublicacao] = useState(initialFormState)
 
     async function handleRegister(publicacao) {
@@ -30,10 +53,10 @@ export default function PublicarPage() {
             const response = await fetch(baseUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(publicacao)
+                body: JSON.stringify({ ...publicacao, imagem: image, usuario: { idUsuario: user.idUsuario } })
             })
             console.log(user.id)
-            console.log(publicacao)
+            console.log(image)
             if (response.ok) {
                 navigate('/publicacao')
             } else {
@@ -43,6 +66,16 @@ export default function PublicarPage() {
         } catch (error) {
             console.log(error)
         }
+    }
+    if (hasError) {
+        return (
+            <FormularioComponent title='Publicar' size='sm'>
+                <Alert severity="error">
+                    <AlertTitle>Erro</AlertTitle>
+                    Você não tem permissão para acessar esta página!
+                </Alert>
+            </FormularioComponent>
+        )
     }
     return (
         <FormularioComponent title='Poste sua publicação agora!' size='xl'>
@@ -68,6 +101,22 @@ export default function PublicarPage() {
                             setPublicacao({ ...publicacao, resumo: e.target.value })
                         }}
                     />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextFildComponent
+                        label='professor'
+                        name='professor'
+                        value={publicacao.professor}
+                        onChange={e => {
+                            setPublicacao({ ...publicacao, professor: e.target.value })
+                        }} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button variant="contained" component="label">
+                        Upload File
+                        <input type="file" hidden name="myImage" onChange={onImageChange} />
+                    </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Editor

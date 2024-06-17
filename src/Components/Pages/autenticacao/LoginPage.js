@@ -51,18 +51,17 @@ export default function LoginPage() {
                 <TextFildComponent label='senha' name='senha' type='password' value={usuario.senha} onChange={handleInputChange} />
             </Grid>
             <Stack spacing={2} direction="row" marginTop={2}>
-                <Button variant="contained" color="primary" fullWidth onClick={event => {
-                    event.preventDefault()
-                    handleLogin(usuario)
-                }
-                }>
-                    Login
-                </Button>
                 <Button variant="contained" color="warning" fullWidth onClick={event => {
                     event.preventDefault()
                     navigate('/registar')
                 }}>
                     Cadastrar
+                </Button>
+                <Button variant="contained" color="primary" fullWidth onClick={event => {
+                    event.preventDefault()
+                    handleLogin(usuario)
+                }}>
+                    Login
                 </Button>
             </Stack>
         </FormularioComponent>

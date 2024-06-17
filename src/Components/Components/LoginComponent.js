@@ -16,7 +16,7 @@ export default function LoginComponent({ setting, handleCloseUserMenu, settings 
         );
     }
     if (localStorage.getItem('user') != null) {
-        const settingsRoutes = [`perfil/${JSON.parse(localStorage.getItem('user')).idUsuario}`, 'dashboard', 'sair'];
+        const settingsRoutes = [`perfil/${JSON.parse(localStorage.getItem('user')).idUsuario}`, 'sair'];
         return (
             <MenuItem key={setting} onClick={() => {
                 handleCloseUserMenu();

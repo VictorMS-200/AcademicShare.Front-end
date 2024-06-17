@@ -18,6 +18,10 @@ const useStyles = makeStyles(() => ({
     Typography: {
         textAlign: 'center',
         fontFamily: 'Merriweather, serif',
+    },
+    div:  {
+        padding: '50px',
+        textAlign: 'center',
     }
 }));
 
@@ -32,7 +36,7 @@ const HomePage = () => {
                     Um lugar para compartilhar conhecimento.
                 </p>
             </div>
-            <div>
+            <div className={classes.div} style={{ backgroundColor: '#F5f5f5' }}>
                 <p className={classes.Typography} style={{color: '#000000', fontWeight: '900', fontSize: '2rem'}}>
                     Como funciona?
                 </p>
@@ -42,8 +46,7 @@ const HomePage = () => {
                     Aqui você pode compartilhar seus conhecimentos, tirar dúvidas e aprender com outras pessoas.
                 </Typography>
             </div>
-            <hr />
-            <div>
+            <div className={classes.div}>
                 <p className={classes.Typography} style={{color: '#000000', fontWeight: '900', fontSize: '2rem'}}>
                     Por que usar o AcademicShare?
                 </p>
@@ -53,24 +56,20 @@ const HomePage = () => {
                     Aqui você pode encontrar materiais de estudo, tirar dúvidas e compartilhar conhecimento com outras pessoas.
                 </Typography>
             </div>
-            <hr />
-            <div>
+            <div className={classes.div} style={{ backgroundColor: '#F5f5f5' }}>
                 <p className={classes.Typography} style={{color: '#000000', fontWeight: '900', fontSize: '2rem'}}>
                     Faça login ou cadastre-se para começar a usar!
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <ButtonGroup variant="outlined" aria-label="Loading button group">
+                <ButtonGroup variant="contained" aria-label="Loading button group">
                     <Button color="primary" href="/login">
                         Login
                     </Button>
-                    <Button color="primary" href="/cadastro">
+                    <Button color="primary" href="/registar">
                         Cadastro
                     </Button>
                 </ButtonGroup>
                 </div>
-            </div>
-            <div style={{ height: '6rem' }}>
-
             </div>
         </>
     );
