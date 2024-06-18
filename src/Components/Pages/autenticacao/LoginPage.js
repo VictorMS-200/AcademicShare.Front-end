@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
 
 import FormularioComponent from '../../Components/FormularioComponent';
 import TextFildComponent from '../../Components/TextFildComponent';
@@ -10,6 +11,8 @@ import TextFildComponent from '../../Components/TextFildComponent';
 
 export default function LoginPage() {
     const navigate = useNavigate();
+
+    const [error, setError] = useState(null)
     const initialFormState = { email: '', senha: '' }
     const [usuario, setUsuario] = useState(initialFormState)
 
@@ -21,7 +24,7 @@ export default function LoginPage() {
 
     async function handleLogin(usuario) {
         if (!usuario.email || !usuario.senha) {
-            alert('Preencha todos os campos!')
+            setError('Preencha todos os campos!')
             return
         }
         try {
@@ -46,6 +49,8 @@ export default function LoginPage() {
 
     return (
         <FormularioComponent title='Entre com uma conta de estudante ou professor!' size='xs'>
+            {error && <Alert severity="error" style={{ marginBottom: '10px' }}>{error}</Alert>}
+
             <Grid container spacing={2}>
                 <TextFildComponent label='email' name='email' value={usuario.email} onChange={handleInputChange} />
                 <TextFildComponent label='senha' name='senha' type='password' value={usuario.senha} onChange={handleInputChange} />

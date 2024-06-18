@@ -13,21 +13,28 @@ export default function PublicacaoPage() {
     const [posts, setPosts] = useState([]);
     const [hasError, setHasError] = useState(false);
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const baseUrl = "http://localhost:8080/api/v1/publicacao";
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios(baseUrl);
-            setPosts(result.data);
+            try {
+                const token = localStorage.getItem('token');
+                const result = await axios.get(baseUrl, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                setPosts(result.data);
+            }
+            catch (error) {
+                console.log(error)
+            }
         };
         fetchData();
     }, []);
 
-    const user = JSON.parse(localStorage.getItem('user'));
-
     useEffect(() => {
         if (user === null) {
-            console.log('Usuário não autenticado')
             navigate('/login')
         }
         if (user?.role !== 'USER') {

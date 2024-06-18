@@ -40,8 +40,9 @@ export default function PublicacaoConteudoPage() {
     return (
         <Container component="main" maxWidth="md">
             <h3>{post.assunto?.nome}</h3>
-            <div dangerouslySetInnerHTML={{ __html: post.conteudo }}></div>
-            <div className={classes.container}>
+            <h1>{post.titulo}</h1>
+            <div>{post.resumo}</div>
+            <div className={classes.container} style={{ marginBottom: '10px' }}>
                 <Grid item xs={10} className={classes.box}>
                     <Avatar sx={{ width: 48, height: 48 }} alt={post.usuario?.avatar} src={post.usuario?.avatar} />
                     <div style={{ marginLeft: '10px' }}>
@@ -50,6 +51,7 @@ export default function PublicacaoConteudoPage() {
                     </div>
                 </Grid>
             </div>
+            <div dangerouslySetInnerHTML={{ __html: post.conteudo }}></div>
         </Container>
     );
 };

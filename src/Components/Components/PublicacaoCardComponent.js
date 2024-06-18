@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Typography, Avatar } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader, Divider, Typography, Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -15,12 +15,6 @@ export default function PublicacaoCardComponent({ posts }) {
                             <Avatar sx={{ width: 48, height: 48 }} alt={post.usuario.avatar} src={post.usuario.avatar} />
                         } />
                     <Divider variant="middle" />
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={post.imagem}
-                        alt={post.usuario.nome}
-                    />
                     <CardContent>
                         <Typography variant="h5" component="div" sx={{ mb: 1.5 }}>
                             {post.assunto.nome}

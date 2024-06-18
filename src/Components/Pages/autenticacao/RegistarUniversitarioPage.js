@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Button, Grid } from '@mui/material';
 import { Stack } from '@mui/material';
+import { Alert } from '@mui/material';
 
 import FormularioComponent from '../../Components/FormularioComponent';
 import TextFildComponent from '../../Components/TextFildComponent';
@@ -16,6 +17,7 @@ const useStyles = makeStyles(() => ({
 
 const RegistarUniversitarioPage = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState(null)
 
     const initialFormState = { nome: '', email: '', senha: '', curso: { nome: '', faculdade: { nome: '' } }, numeroDeMatricula: '', avatar: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png', role: 'USER' }
     const [usuario, setUsuario] = useState(initialFormState)
@@ -30,7 +32,7 @@ const RegistarUniversitarioPage = () => {
 
     async function handleRegister(usuario) {
         if (!usuario.nome || !usuario.email || !usuario.senha || !usuario.curso.nome || !usuario.curso.faculdade.nome || !usuario.numeroDeMatricula) {
-            alert('Preencha todos os campos!')
+            setError('Preencha todos os campos!')
             return
         }
         try {
@@ -56,6 +58,7 @@ const RegistarUniversitarioPage = () => {
     return (
         <>
             <FormularioComponent title='Crie agora uma conta de estudante ou Professor!' size='xs'>
+                {error && <Alert severity="error" style={{ marginBottom: '10px' }}>{error}</Alert>}
                 <Grid container spacing={2}>
                     <TextFildComponent 
                         label='nome'

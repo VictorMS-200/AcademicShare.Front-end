@@ -14,15 +14,7 @@ import TextFildComponent from '../../Components/TextFildComponent';
 const baseUrl = "http://localhost:8080/api/v1/publicacao";
 
 export default function PublicarPage() {
-    const [image, setImage] = useState(null);
     const [hasError, setHasError] = useState(false);
-
-    const onImageChange = event => {
-        if (event.target.files && event.target.files[0]) {
-            let img = event.target.files[0];
-            setImage(URL.createObjectURL(img));
-        }
-    };
 
     const navigate = useNavigate();
     const editorRef = useRef(null);
@@ -53,10 +45,8 @@ export default function PublicarPage() {
             const response = await fetch(baseUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...publicacao, imagem: image, usuario: { idUsuario: user.idUsuario } })
+                body: JSON.stringify({ ...publicacao, usuario: { idUsuario: user.idUsuario } })
             })
-            console.log(user.id)
-            console.log(image)
             if (response.ok) {
                 navigate('/publicacao')
             } else {
@@ -111,12 +101,6 @@ export default function PublicarPage() {
                         onChange={e => {
                             setPublicacao({ ...publicacao, professor: e.target.value })
                         }} />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" component="label">
-                        Upload File
-                        <input type="file" hidden name="myImage" onChange={onImageChange} />
-                    </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Editor
