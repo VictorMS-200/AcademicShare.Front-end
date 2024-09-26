@@ -8,7 +8,7 @@
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
-    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@mui/styled-engine-sc": "^6.1.1",
     "@mui/styles": "^5.15.19",
     "@rpldy/upload-button": "^1.8.1",
     "@rpldy/upload-preview": "^1.8.1",
